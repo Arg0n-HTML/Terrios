@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ElectionsModelStoreContainer" CdmEntityContainer="ElectionsEntities">
+    <EntitySetMapping Name="service">
+      <EntityTypeMapping TypeName="ElectionsModel.service">
+        <MappingFragment StoreEntitySet="Bulletins">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nomservice" ColumnName="idScrutin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="site">
+      <EntityTypeMapping TypeName="ElectionsModel.site">
+        <MappingFragment StoreEntitySet="Electeurs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="vile" ColumnName="Nom" />
+          <ScalarProperty Name="nom" ColumnName="Prenom" />
+          <ScalarProperty Name="adresse" ColumnName="DateNaissance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employe">
+      <EntityTypeMapping TypeName="ElectionsModel.employe">
+        <MappingFragment StoreEntitySet="Scrutins">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nom" ColumnName="Titre" />
+          <ScalarProperty Name="prenom" ColumnName="Question" />
+          <ScalarProperty Name="tel_pro" ColumnName="DateDebut" />
+          <ScalarProperty Name="tel_perso" ColumnName="DateFin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

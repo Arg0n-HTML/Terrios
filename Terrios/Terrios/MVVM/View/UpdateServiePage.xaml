@@ -1,0 +1,17 @@
+﻿<Window x:Class="Terrios.MVVM.View.UpdateServiePage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Terrios.MVVM.View"
+        mc:Ignorable="d"
+        Background="#191919"
+        Title="InsertPage" Height="300" Width="300">
+    <Grid>
+        <Button Content="Mettre à jour" Background="#353340" HorizontalAlignment="Center" Margin="0,199,0,0" VerticalAlignment="Top"/>
+        <TextBlock Foreground="Azure" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Nom du service" Margin="0,100,0,0" VerticalAlignment="Top"/>
+        <TextBlock Foreground="Azure" HorizontalAlignment="Center" Margin="0,21,0,0" TextWrapping="Wrap" Text="Services" FontSize="30" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,142,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="#353340"/>
+
+    </Grid>
+</Window>

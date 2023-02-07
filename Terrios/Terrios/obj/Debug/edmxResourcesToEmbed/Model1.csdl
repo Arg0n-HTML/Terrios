@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ElectionsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="service">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomservice" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="site">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="vile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="adresse" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="employe">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="poste" Type="Int32" Nullable="false" />
+    <Property Name="tel_pro" Type="Int32" Nullable="false" />
+    <Property Name="tel_perso" Type="Int32" Nullable="false" />
+    <Property Name="password" Type="String" Nullable="false" />
+    <Property Name="email" Type="String" Nullable="false" />
+    <Property Name="idposte" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="idsite" />
+    <NavigationProperty Name="idservice" Relationship="ElectionsModel.FK_employe_service" FromRole="Employe" ToRole="Service" />
+  </EntityType>
+  <Association Name="FK_employe_service">
+    <End Role="Employe" Type="ElectionsModel.employe" Multiplicity="1" />
+    <End Role="Service" Type="ElectionsModel.service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employe">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="nomservice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ElectionsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="service" EntityType="ElectionsModel.service" />
+    <EntitySet Name="site" EntityType="ElectionsModel.site" />
+    <EntitySet Name="employe" EntityType="ElectionsModel.employe" />
+    <AssociationSet Name="FK_employe_service" Association="ElectionsModel.FK_employe_service">
+      <End Role="Employe" EntitySet="employe" />
+      <End Role="Service" EntitySet="service" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="ComplexType1">
+    <Property Type="Int32" Name="idservice" Nullable="false" />
+    <Property Type="Int32" Name="idservice1" Nullable="false" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ElectionsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bulletins">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idScrutin" Type="int" Nullable="false" />
+    <Property Name="Texte" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Electeurs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateNaissance" Type="date" Nullable="false" />
+    <Property Name="Bureau" Type="int" Nullable="false" />
+    <Property Name="Rang" Type="int" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Scrutins">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titre" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Question" Type="nvarchar" MaxLength="250" />
+    <Property Name="DateDebut" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateFin" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Bulletins_Scrutins">
+    <End Role="Scrutins" Type="Self.Scrutins" Multiplicity="1" />
+    <End Role="Bulletins" Type="Self.Bulletins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Scrutins">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bulletins">
+        <PropertyRef Name="idScrutin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ElectionsModelStoreContainer">
+    <EntitySet Name="Bulletins" EntityType="Self.Bulletins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Electeurs" EntityType="Self.Electeurs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Scrutins" EntityType="Self.Scrutins" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Bulletins_Scrutins" Association="Self.FK_Bulletins_Scrutins">
+      <End Role="Scrutins" EntitySet="Scrutins" />
+      <End Role="Bulletins" EntitySet="Bulletins" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
